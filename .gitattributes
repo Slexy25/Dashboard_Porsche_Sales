@@ -1,0 +1,4 @@
+
+script.js linguist-language=JavaScript
+script.js -linguist-generated
+script.js -linguist-vendored
