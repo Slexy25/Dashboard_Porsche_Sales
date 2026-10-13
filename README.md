@@ -1,6 +1,10 @@
-Porsche Sales Dashboard
 
-Dashboard Interativo de Análise de Vendas | 2021–2026
+ Porsche Sales Dashboard
+
+![Dashboard Porsche](images/dashboard.png)
+
+Dashboard interativo de análise de vendas de veículos Porsche entre 2021 e 2026.
+  
 
 📌 Sobre o Projeto
 
@@ -121,3 +125,4 @@ Técnicas de análise e apresentação de dados.
 Princípios de UI/UX Design.
 
 Design responsivo.
+
