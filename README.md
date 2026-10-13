@@ -1,7 +1,6 @@
+![Dashboard Porsche](images/logo)
 
- Porsche Sales Dashboard
-
-![Dashboard Porsche](images/dashboard.png)
+Porsche Sales Dashboard
 
 Dashboard interativo de análise de vendas de veículos Porsche entre 2021 e 2026.
   
