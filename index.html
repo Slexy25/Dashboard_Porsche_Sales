@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Porsche Sales Intelligence
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="tooltip" id="tooltip">
+   <div class="tt" id="tooltipTitle">
+   </div>
+   <div class="tb" id="tooltipBody">
+   </div>
+  </div>
+  <div class="page">
+   <div class="topbar">
+    <div class="brand">
+     <div class="crest">
+     </div>
+     <div>
+      <h1>
+       Porsche Sales Intelligence
+      </h1>
+      <p>
+       painel de vendas • fotografias e análises
+      </p>
+     </div>
+    </div>
+    <div class="chips">
+     <div class="chip">
+      100 registros
+     </div>
+     <div class="chip">
+      40 modelos
+     </div>
+     <div class="chip">
+      79 cidades
+     </div>
+     <div class="chip">
+      Visual mais limpo e explicativo
+     </div>
+    </div>
+   </div>
+   <div class="layout">
+    <aside class="card sidebar">
+     <div class="side-head">
+      <div class="eyebrow">
+       <i>
+       </i>
+       Painel de filtros
+      </div>
+      <h2>
+       Filtros e leitura executiva
+      </h2>
+      <p>
+       Agora os modelos em destaque usam fotografias reais identificadas individualmente. Os links exigem acesso à internet.
+      </p>
+     </div>
+     <div class="filters">
+      <div class="filter-card">
+       <h3>
+        Filtros principais
+       </h3>
+       <div class="label">
+        <span>
+         Modelo da Porsche
+        </span>
+       </div>
+       <select id="modelFilter">
+       </select>
+       <div class="label" style="margin-top:12px">
+        <span>
+         Ano-modelo
+        </span>
+       </div>
+       <select id="yearFilter">
+       </select>
+       <div class="label" style="margin-top:12px">
+        <span>
+         Cidade
+        </span>
+       </div>
+       <select id="cityFilter">
+       </select>
+      </div>
+      <div class="filter-card">
+       <h3>
+        Preço de venda
+       </h3>
+       <div class="two">
+        <div>
+         <div class="label">
+          <span>
+           Mínimo
+          </span>
+          <span id="priceMinLabel">
+          </span>
+         </div>
+         <input id="priceMin" step="100" type="number"/>
+        </div>
+        <div>
+         <div class="label">
+          <span>
+           Máximo
+          </span>
+          <span id="priceMaxLabel">
+          </span>
+         </div>
+         <input id="priceMax" step="100" type="number"/>
+        </div>
+       </div>
+      </div>
+      <div class="filter-card">
+       <h3>
+        Período
+       </h3>
+       <div class="two">
+        <div>
+         <div class="label">
+          <span>
+           Data inicial
+          </span>
+         </div>
+         <input id="dateFrom" type="date"/>
+        </div>
+        <div>
+         <div class="label">
+          <span>
+           Data final
+          </span>
+         </div>
+         <input id="dateTo" type="date"/>
+        </div>
+       </div>
+      </div>
+      <div class="actions">
+       <button class="btn-primary" id="applyBtn">
+        Aplicar
+       </button>
+       <button class="btn-secondary" id="resetBtn">
+        Limpar
+       </button>
+      </div>
+     </div>
+     <div class="side-note">
+      A tabela de “principais modelos vendidos por cidade” foi substituída por um gráfico para facilitar o entendimento do usuário.
+     </div>
+    </aside>
+    <main class="main">
+     <section class="card hero">
+      <div class="hero-media" id="heroMedia">
+      </div>
+      <div class="hero-overlay">
+      </div>
+      <div class="hero-inner">
+       <div class="hero-copy">
+        <div class="small">
+         Inteligência comercial Porsche
+        </div>
+        <h2 id="heroTitle">
+         Performance de vendas com fotos por modelo.
+        </h2>
+        <p id="heroText">
+         Galeria com fotografias reais dos modelos e análise comercial interativa. As fotografias disponíveis são vinculadas às respectivas versões; modelos sem foto permanecem identificados por nome.
+        </p>
+       </div>
+       <div class="spotlight-card">
+        <div class="spotlight-title">
+         Destaque atual
+        </div>
+        <div class="spotlight-main" id="spotlightMain">
+         Porsche Spotlight
+        </div>
+        <div class="spotlight-sub" id="spotlightSub">
+         O modelo líder do recorte assume o destaque visual principal e resume o comportamento comercial atual.
+        </div>
+        <div class="mini-grid">
+         <div class="mini">
+          <div class="t">
+           Modelo líder
+          </div>
+          <div class="v" id="spotModel">
+           —
+          </div>
+          <div class="s" id="spotModelSub">
+           —
+          </div>
+         </div>
+         <div class="mini">
+          <div class="t">
+           Ano líder
+          </div>
+          <div class="v" id="spotYear">
+           —
+          </div>
+          <div class="s" id="spotYearSub">
+           —
+          </div>
+         </div>
+         <div class="mini">
+          <div class="t">
+           Cidade líder
+          </div>
+          <div class="v" id="spotCity">
+           —
+          </div>
+          <div class="s" id="spotCitySub">
+           —
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+     <section class="kpis">
+      <div class="card kpi">
+       <div class="t">
+        Receita total
+       </div>
+       <div class="v" id="kpiRevenue">
+       </div>
+       <div class="s" id="kpiRevenueSub">
+       </div>
+      </div>
+      <div class="card kpi">
+       <div class="t">
+        Vendas
+       </div>
+       <div class="v" id="kpiSales">
+       </div>
+       <div class="s" id="kpiSalesSub">
+       </div>
+      </div>
+      <div class="card kpi">
+       <div class="t">
+        Ticket médio
+       </div>
+       <div class="v" id="kpiAvg">
+       </div>
+       <div class="s" id="kpiAvgSub">
+       </div>
+      </div>
+      <div class="card kpi">
+       <div class="t">
+        Modelos ativos
+       </div>
+       <div class="v" id="kpiModels">
+       </div>
+       <div class="s" id="kpiModelsSub">
+       </div>
+      </div>
+      <div class="card kpi">
+       <div class="t">
+        Cidade líder
+       </div>
+       <div class="v" id="kpiCity">
+       </div>
+       <div class="s" id="kpiCitySub">
+       </div>
+      </div>
+     </section>
+     <section class="card section">
+      <div class="head">
+       <div>
+        <h3>
+         Galeria de modelos
+        </h3>
+        <p>
+         Fotografias reais verificadas para os principais modelos. Quando não existe foto validada, mostramos o nome do modelo sem inventar uma imagem.
+        </p>
+       </div>
+       <div class="badge" id="galleryBadge">
+        Modelos em destaque
+       </div>
+      </div>
+      <div class="gallery-grid" id="modelGallery">
+      </div>
+     </section>
+     <section class="grid-2">
+      <section class="card section">
+       <div class="head">
+        <div>
+         <h3>
+          Evolução das vendas
+         </h3>
+         <p>
+          Veja o comportamento das vendas de forma evolutiva por mês ou ano, com alternância entre vendas, faturamento e acumulado.
+         </p>
+        </div>
+        <div class="toggle-set" id="evoMetricToggle">
+         <button class="toggle-btn active" data-metric="count">
+          Vendas
+         </button>
+         <button class="toggle-btn" data-metric="revenue">
+          Faturamento
+         </button>
+         <button class="toggle-btn" data-metric="cumulative">
+          Acumulado
+         </button>
+        </div>
+        <div class="toggle-set" id="evoGranularityToggle">
+         <button class="toggle-btn active" data-gran="month">
+          Mensal
+         </button>
+         <button class="toggle-btn" data-gran="year">
+          Anual
+         </button>
+        </div>
+       </div>
+       <div class="svg-wrap" id="chartEvolution">
+       </div>
+       <div class="chart-note">
+        O gráfico responde aos filtros aplicados e mostra a progressão comercial ao longo do tempo.
+       </div>
+      </section>
+      <section class="card section">
+       <div class="head">
+        <div>
+         <h3>
+          Top modelos
+         </h3>
+         <p>
+          Ranking interativo dos modelos com melhor performance no recorte atual.
+         </p>
+        </div>
+        <div class="toggle-set" id="topModelMetricToggle">
+         <button class="toggle-btn active" data-metric="revenue">
+          Receita
+         </button>
+         <button class="toggle-btn" data-metric="count">
+          Vendas
+         </button>
+        </div>
+       </div>
+       <div class="svg-wrap" id="chartTopModels">
+       </div>
+       <div class="chart-note">
+        Clique em uma barra para destacar visualmente o modelo no hero principal.
+       </div>
+      </section>
+     </section>
+     <section class="grid-2">
+      <section class="card section">
+       <div class="head">
+        <div>
+         <h3>
+          Análise por cidade
+         </h3>
+         <p>
+          Compare as cidades líderes por receita ou por quantidade de vendas.
+         </p>
+        </div>
+        <div class="toggle-set" id="cityMetricToggle">
+         <button class="toggle-btn active" data-metric="revenue">
+          Receita
+         </button>
+         <button class="toggle-btn" data-metric="count">
+          Vendas
+         </button>
+        </div>
+       </div>
+       <div class="svg-wrap" id="chartTopCities">
+       </div>
+       <div class="chart-note">
+        Leitura ideal para localizar as praças mais relevantes da operação.
+       </div>
+      </section>
+      <section class="card section">
+       <div class="head">
+        <div>
+         <h3>
+          Status de entrega
+         </h3>
+         <p>
+          Panorama do fluxo operacional dos pedidos no recorte filtrado.
+         </p>
+        </div>
+        <div class="badge" id="statusBadge">
+         Logística
+        </div>
+       </div>
+       <div class="svg-wrap" id="chartStatus">
+       </div>
+       <div class="chart-note">
+        A distribuição ajuda a monitorar gargalos e níveis de entrega da operação.
+       </div>
+      </section>
+     </section>
+     <section class="grid-3">
+      <section class="card section">
+       <div class="head">
+        <div>
+         <h3>
+          Modelos mais vendidos por cidade
+         </h3>
+         <p>
+          Transformei a tabela em gráfico para facilitar a leitura. Cada barra mostra a cidade, o modelo líder e o valor vendido.
+         </p>
+        </div>
+        <div class="badge" id="cityLeaderBadge">
+         Cidades
+        </div>
+       </div>
+       <div class="svg-wrap" id="chartCityLeaders">
+       </div>
+       <div class="chart-note">
+        Passe o mouse para ver cidade, modelo líder, vendas, receita e participação dentro do volume local.
+       </div>
+      </section>
+      <section class="card section">
+       <div class="head">
+        <div>
+         <h3>
+          Qual ano mais saiu no período?
+         </h3>
+         <p>
+          Resposta baseada nos registros com data válida dentro do período selecionado.
+         </p>
+        </div>
+        <div class="badge" id="periodCoverageBadge">
+         Período
+        </div>
+       </div>
+       <div class="answer">
+        <div class="small">
+         Resposta executiva
+        </div>
+        <div class="big" id="topYearAnswer">
+        </div>
+        <div class="desc" id="topYearSub">
+        </div>
+       </div>
+       <div class="svg-wrap" id="chartModelYear">
+       </div>
+       <div class="pill-row" id="periodPills">
+       </div>
+      </section>
+      <section class="card section">
+       <div class="head">
+        <div>
+         <h3>
+          Insights automáticos
+         </h3>
+         <p>
+          Leituras geradas para apoiar decisões comerciais por cidade e mix de produto.
+         </p>
+        </div>
+        <div class="badge">
+         Insights
+        </div>
+       </div>
+       <ul class="insights" id="insightList">
+       </ul>
+      </section>
+     </section>
+     <section class="card section">
+      <div class="head">
+       <div>
+        <h3>
+         Detalhamento das vendas
+        </h3>
+        <p>
+         Tabela transacional para validar os dados do recorte selecionado.
+        </p>
+       </div>
+       <div class="badge" id="tableBadge">
+        Registros
+       </div>
+      </div>
+      <div class="table-wrap">
+       <table>
+        <thead>
+         <tr>
+          <th>
+           Data
+          </th>
+          <th>
+           Cliente
+          </th>
+          <th>
+           Modelo
+          </th>
+          <th>
+           Família
+          </th>
+          <th>
+           Ano-modelo
+          </th>
+          <th>
+           Cidade
+          </th>
+          <th>
+           Preço de venda
+          </th>
+          <th>
+           Mileage
+          </th>
+          <th>
+           Pagamento
+          </th>
+          <th>
+           Status
+          </th>
+         </tr>
+        </thead>
+        <tbody id="salesTableBody">
+        </tbody>
+       </table>
+      </div>
+     </section>
+     <div class="footer-note">
+      Fotografias de fontes editoriais externas; podem precisar de autorização para publicação e requerem internet. Modelos sem fotos verificadas exibem aviso de indisponibilidade, sem substituir por desenhos de automóveis.
+     </div>
+    </main>
+   </div>
+  </div>
+  <script defer="" src="script.js">
+  </script>
+ </body>
+</html>
+
